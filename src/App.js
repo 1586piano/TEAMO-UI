@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import {useState} from 'react';
+import BoardList from './BoardList';
 
 function Article(props){
   return <article>
@@ -156,6 +157,7 @@ function App() {
         }}>Create</a></li>
         {contextControl}
       </ul>
+      <BoardList></BoardList>
     </div>
   );
 }
