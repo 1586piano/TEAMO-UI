@@ -1,6 +1,11 @@
-import logo from './logo.svg';
 import './App.css';
 import {useState} from 'react';
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Link,
+} from "react-router-dom";
 import BoardList from './BoardList';
 
 function Article(props){
@@ -157,7 +162,18 @@ function App() {
         }}>Create</a></li>
         {contextControl}
       </ul>
-      <BoardList></BoardList>
+      <>
+        <BrowserRouter>
+          <nav>
+            <Link to="/">Home</Link>
+            <Link to="/boardList">BoardList</Link>
+          </nav>
+          <Routes>
+            <Route path="/" element={<App />}/>
+            <Route path="boardList" element={<BoardList />} />
+          </Routes>
+        </BrowserRouter>
+      </>
     </div>
   );
 }
