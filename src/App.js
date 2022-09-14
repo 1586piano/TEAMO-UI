@@ -8,12 +8,17 @@ import {
 } from "react-router-dom";
 import BoardList from './BoardList';
 
+const MenuItem = ({ children }) => (
+  <div className="menu-item">{children}</div>
+);
+
 function Article(props){
   return <article>
     <h2>{props.title}</h2>
     {props.body}
   </article>
 }
+
 function Header(props){
   return <header>
     <h1><a href="/" onClick={(event)=>{
@@ -22,6 +27,7 @@ function Header(props){
     }}>{props.title}</a></h1>
   </header>
 }
+
 function Nav(props){
   const lis = []
   for(let i=0; i<props.topics.length; i++){
@@ -39,6 +45,7 @@ function Nav(props){
     </ol>
   </nav>
 }
+
 function Create(props){
   return <article>
     <h2>Create</h2>
@@ -54,6 +61,7 @@ function Create(props){
     </form>
   </article>
 }
+
 function Update(props){
   const [title, setTitle] = useState(props.title);
   const [body, setBody] = useState(props.body);
@@ -75,6 +83,7 @@ function Update(props){
     </form>
   </article>
 }
+
 function App() {
   const [mode, setMode] = useState('WELCOME');
   const [id, setId] = useState(null);
@@ -147,6 +156,11 @@ function App() {
   }
   return (
     <div>
+      <div className="menu">
+        <MenuItem>홈</MenuItem>
+        <MenuItem>소개</MenuItem>
+        <MenuItem>메모</MenuItem>
+      </div>
       <Header title="WEB" onChangeMode={()=>{
         setMode('WELCOME');
       }}></Header>
