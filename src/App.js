@@ -157,9 +157,19 @@ function App() {
   return (
     <div>
       <div className="menu">
-        <MenuItem>홈</MenuItem>
-        <MenuItem>소개</MenuItem>
-        <MenuItem>메모</MenuItem>
+      <BrowserRouter>
+          <nav>
+          <MenuItem><Link to="/">Home</Link></MenuItem>
+        <MenuItem><Link to="/boardList">BoardList</Link></MenuItem>
+            
+          </nav>
+          <Routes>
+            <Route path="/" element={<App />}/>
+            <Route path="boardList" element={<BoardList />} />
+          </Routes>
+        </BrowserRouter>
+
+        
       </div>
       <Header title="WEB" onChangeMode={()=>{
         setMode('WELCOME');
@@ -176,18 +186,6 @@ function App() {
         }}>Create</a></li>
         {contextControl}
       </ul>
-      <>
-        <BrowserRouter>
-          <nav>
-            <Link to="/">Home</Link>
-            <Link to="/boardList">BoardList</Link>
-          </nav>
-          <Routes>
-            <Route path="/" element={<App />}/>
-            <Route path="boardList" element={<BoardList />} />
-          </Routes>
-        </BrowserRouter>
-      </>
     </div>
   );
 }
