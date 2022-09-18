@@ -1,5 +1,5 @@
 {
-  "homepage": "https://egoing.github.io/react-2022-tutorial-src/",
+  "homepage": "https://egoing.github.io/test/",
   "name": "react-app",
   "version": "0.1.0",
   "private": true,
@@ -9,6 +9,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.27.2",
     "bootstrap": "^5.2.1",
+    "http-proxy-middleware": "^2.0.6",
     "react": "^17.0.2",
     "react-bootstrap": "^2.5.0",
     "react-dom": "^17.0.2",

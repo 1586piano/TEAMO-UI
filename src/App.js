@@ -1,5 +1,5 @@
 import './App.css';
-import {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   BrowserRouter,
   Routes,
@@ -7,6 +7,7 @@ import {
   Link,
 } from "react-router-dom";
 import BoardList from './BoardList';
+import axios from 'axios';
 
 const MenuItem = ({ children }) => (
   <div className="menu-item">{children}</div>
@@ -83,8 +84,18 @@ function Update(props){
     </form>
   </article>
 }
+  
 
 function App() {
+  const [hello, setHello] = useState('')
+  const [test, setTest] = useState(false);
+  useEffect(() => {
+    axios.get('/api/board')
+    .then(response => setHello(response.data))
+    .catch(error => console.log(error))
+  }, []);
+
+  
   const [mode, setMode] = useState('WELCOME');
   const [id, setId] = useState(null);
   const [nextId, setNextId] = useState(4);
@@ -156,29 +167,30 @@ function App() {
   }
   return (
     <div>
+
       <div className="menu">
-      <BrowserRouter>
+        <BrowserRouter>
           <nav>
-          <MenuItem><Link to="/">Home</Link></MenuItem>
-        <MenuItem><Link to="/boardList">BoardList</Link></MenuItem>
-            
+            <MenuItem><Link to="/">Home</Link></MenuItem>
+            <MenuItem><Link to="/boardList">BoardList</Link></MenuItem>
           </nav>
           <Routes>
             <Route path="/" element={<App />}/>
             <Route path="boardList" element={<BoardList />} />
           </Routes>
         </BrowserRouter>
-
-        
       </div>
+
       <Header title="WEB" onChangeMode={()=>{
         setMode('WELCOME');
       }}></Header>
+
       <Nav topics={topics} onChangeMode={(_id)=>{
         setMode('READ');
         setId(_id);
       }}></Nav>
       {content}
+
       <ul>
         <li><a href="/create" onClick={event=>{
           event.preventDefault();
@@ -186,6 +198,11 @@ function App() {
         }}>Create</a></li>
         {contextControl}
       </ul>
+
+      <div>
+           백엔드에서 가져온 데이터입니다 : {hello}
+       </div>
+
     </div>
   );
 }
