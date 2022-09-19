@@ -90,7 +90,7 @@ function App() {
   const [hello, setHello] = useState('')
   const [test, setTest] = useState(false);
   useEffect(() => {
-    axios.get('/api/board')
+    axios.get('http://localhost:8080/board')
     .then(response => setHello(response.data))
     .catch(error => console.log(error))
   }, []);
@@ -171,11 +171,9 @@ function App() {
       <div className="menu">
         <BrowserRouter>
           <nav>
-            <MenuItem><Link to="/">Home</Link></MenuItem>
             <MenuItem><Link to="/boardList">BoardList</Link></MenuItem>
           </nav>
           <Routes>
-            <Route path="/" element={<App />}/>
             <Route path="boardList" element={<BoardList />} />
           </Routes>
         </BrowserRouter>
