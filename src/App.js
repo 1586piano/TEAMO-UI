@@ -90,7 +90,7 @@ function App() {
   const [hello, setHello] = useState('')
   const [test, setTest] = useState(false);
   useEffect(() => {
-    axios.get('http://localhost:8080/board')
+    axios.get('http://localhost:8080/board') //TODO CORS 위반 이슈 
     .then(response => setHello(response.data))
     .catch(error => console.log(error))
   }, []);
