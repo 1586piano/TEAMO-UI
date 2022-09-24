@@ -87,14 +87,21 @@ function Update(props){
   
 
 function App() {
-  const [hello, setHello] = useState('')
-  
+  const [boardId, setBoardId] = useState('')
+  const [boardTitle, setBoardTitle] = useState('')
+  const [boardContent, setBoardContent] = useState('')
+
   useEffect(() => {
-    axios.get('/api/board') //TODO CORS 위반 이슈 
-    .then(response =>{ console.log(response); setHello(response.data)})
+    axios.get('http://localhost:8080/api/board') //TODO CORS 위반 이슈 
+    .then(({data}) =>{ 
+      data.map((d)=>(
+        setBoardId(d.id),
+        setBoardTitle(d.title),
+        setBoardContent(d.content)
+     ));
+    })
     .catch(error => console.log(error))
   }, []);
-
   
   const [mode, setMode] = useState('WELCOME');
   const [id, setId] = useState(null);
@@ -198,7 +205,10 @@ function App() {
       </ul>
 
       <div>
-           백엔드에서 가져온 데이터입니다 : {hello}
+           백엔드에서 가져온 데이터입니다 :
+           <li>
+            {boardId} {boardTitle} {boardContent}
+           </li>
        </div>
 
     </div>
