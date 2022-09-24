@@ -92,7 +92,7 @@ function App() {
   const [boardContent, setBoardContent] = useState('')
 
   useEffect(() => {
-    axios.get('http://localhost:8080/api/board') //TODO CORS 위반 이슈 
+    axios.get('http://localhost:8080/api/board') //TODO Proxy 제대로 동작하지 않음
     .then(({data}) =>{ 
       data.map((d)=>(
         setBoardId(d.id),
