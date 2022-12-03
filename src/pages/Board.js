@@ -1,5 +1,3 @@
-import { filter } from 'lodash';
-import { sentenceCase } from 'change-case';
 import { Link as RouterLink } from 'react-router-dom';
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
@@ -21,11 +19,9 @@ import {
 } from '@mui/material';
 // components
 import Page from '../components/Page';
-import Label from '../components/Label';
 import Scrollbar from '../components/Scrollbar';
 import Iconify from '../components/Iconify';
-import SearchNotFound from '../components/SearchNotFound';
-import { UserListHead, UserListToolbar, UserMoreMenu } from '../sections/@dashboard/user';
+import { BoardListHead, BoardListToolbar, BoardMoreMenu } from '../sections/@dashboard/board';
 // mock
 import USERLIST from '../_mock/user';
 
@@ -49,7 +45,7 @@ function descendingComparator(a, b, orderBy) {
   return 0;
 }
 
-export default function User() {
+export default function Board() {
   const [page, setPage] = useState(0);
   const [order, setOrder] = useState('asc');
   const [selected, setSelected] = useState([]);
@@ -109,14 +105,14 @@ export default function User() {
   const isUserNotFound = boardList.length === 0;
 
   return (
-    <Page title="User">
+    <Page title="Board">
       <Container>
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
           <Typography variant="h4" gutterBottom>
-            User
+            Board
           </Typography>
           <Button variant="contained" component={RouterLink} to="#" startIcon={<Iconify icon="eva:plus-fill" />}>
-            New User
+            New Board
           </Button>
         </Stack>
 
@@ -124,7 +120,7 @@ export default function User() {
           <Scrollbar>
             <TableContainer sx={{ minWidth: 800 }}>
               <Table>
-                <UserListHead
+                <BoardListHead
                   order={order}
                   orderBy={orderBy}
                   headLabel={TABLE_HEAD}
@@ -156,7 +152,7 @@ export default function User() {
                         <TableCell align="left">{createdBy}</TableCell>         
                       
                         <TableCell align="right">
-                          <UserMoreMenu />
+                          <BoardMoreMenu />
                         </TableCell>
                       </TableRow>
                     );
